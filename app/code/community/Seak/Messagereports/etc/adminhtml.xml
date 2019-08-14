@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+
+<!--
+/**
+ * Seak Ecommerce Group :: Magento Extension Development
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * @license     
+ *http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+ -->
+ 
+<config>
+	<menu>
+		<seak>
+			<title>Seak Extensions</title>
+            <sort_order>999999</sort_order>
+			<children>
+				<messagereports module="messagereports">
+				<title>Message Reports</title>
+				<sort_order>20</sort_order>
+				<children>
+                <view_messagereports translate="title" module="messagereports">
+                <title>View Message Reports</title>
+			    <sort_order>100</sort_order>
+                <action>messagereports/adminhtml_messagereports</action>
+                </view_messagereports>
+				<messagereports_settings translate="title" module="messagereports">
+                <title>Message Reports Settings</title>
+			    <sort_order>200</sort_order>
+                <action>adminhtml/system_config/edit/section/messagereports/</action>
+                </messagereports_settings>
+				</children>
+				</messagereports>
+				</children>
+			</seak>
+		</menu>	
+	<acl>
+		<resources>
+			<all>
+				<title>Allow Everything</title>
+			</all>
+			<admin>
+			<children>
+            <seak>
+			<title>Seak Extensions</title>
+            <sort_order>999999</sort_order>
+			<children>
+			<messagereports  module="messagereports">
+				<title>Message Reports</title>
+				<sort_order>20</sort_order>
+				<children>
+				<view_messagereports translate="title" module="messagereports">
+                <title>View Message Reports</title>
+			    <sort_order>100</sort_order>
+                <action>messagereports/adminhtml_messagereports</action>
+                </view_messagereports>
+				<messagereports_settings translate="title" module="messagereports">
+                <title>Message Reports Settings</title>
+			    <sort_order>200</sort_order>
+                </messagereports_settings>
+				</children>
+				</messagereports>
+			</children>
+            </seak>
+			<system>
+				<children>
+						<config>
+							<children>
+								<messagereports translate="title" module="messagereports">
+									<title>Message Reports Settings</title>
+										<sort_order>50</sort_order>
+									</messagereports>							
+								</children>
+							</config>
+						</children>
+					</system>
+			</children>
+			</admin>
+		</resources>
+	</acl>	
+</config>

@@ -1,0 +1,93 @@
+<?php 
+
+/**
+ * Seak Ecommerce Group :: Magento Extension Development
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * @license     
+ * http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+ 
+ $IsEnabled =  Mage::getStoreConfig('messagereports/general/enabled');
+ if($IsEnabled){
+ //Message Reports is Enabled
+ 
+ $messagereports_collection = Mage::getModel('messagereports/messagereports');
+ $session = Mage::getSingleton('customer/session');
+ if($session->isLoggedIn()){$CustomerIdValue = Mage::helper('customer/data')->getCustomer()->getId();}else{$CustomerIdValue = 'Guest';}
+ $WebsiteValue = Mage::app()->getWebsite()->getName();
+ $StoreValueInt = Mage::app()->getStore();
+ $StoreValue = $StoreValueInt->getName();
+ $LayoutValueModule = Mage::app()->getRequest()->getModuleName();
+ $LayoutValueController = Mage::app()->getRequest()->getControllerName();
+ $LayoutValueAction = Mage::app()->getRequest()->getActionName();
+ $Action = ''.$LayoutValueModule.' > '.$LayoutValueController.' > '.$LayoutValueAction.'';
+ 
+ $messages = $this->getMessagesBlock()->getMessages();
+ foreach($messages as $message) {
+ if($message->getType() == 'error') {
+ //Error Type
+ if(Mage::getStoreConfig('messagereports/report_settings/report_errors')){
+ //Report Error Messages Enabled
+ $messagereports_collection->setId();
+ $messagereports_collection->setMessageType($message->getType());
+ $messagereports_collection->setMessageContent($message->getText());
+ $messagereports_collection->setCustomerId($CustomerIdValue);
+ $messagereports_collection->setMessageUrl(Mage::helper('core/url')->getCurrentUrl());
+ $messagereports_collection->setMessageAction($Action);
+ $messagereports_collection->setMessageWebsite($WebsiteValue);
+ $messagereports_collection->setMessageStore($StoreValue);
+ $messagereports_collection->setCreatedTime(now());
+ $messagereports_collection->save();
+ }	
+ }elseif($message->getType() == 'success'){
+ //Success Type
+ if(Mage::getStoreConfig('messagereports/report_settings/report_success')){
+ //Report Success Messages Enabled
+ $messagereports_collection->setId();
+ $messagereports_collection->setMessageType($message->getType());
+ $messagereports_collection->setMessageContent($message->getText());
+ $messagereports_collection->setCustomerId($CustomerIdValue);
+ $messagereports_collection->setMessageUrl(Mage::helper('core/url')->getCurrentUrl());
+ $messagereports_collection->setMessageAction($Action);
+ $messagereports_collection->setMessageWebsite($WebsiteValue);
+ $messagereports_collection->setMessageStore($StoreValue);
+ $messagereports_collection->setCreatedTime(now());
+ $messagereports_collection->save();
+ }	
+ }elseif($message->getType() == 'notice'){
+ //Notice Type
+ if(Mage::getStoreConfig('messagereports/report_settings/report_notices')){
+ //Report Notices Messages Enabled
+ $messagereports_collection->setId();
+ $messagereports_collection->setMessageType($message->getType());
+ $messagereports_collection->setMessageContent($message->getText());
+ $messagereports_collection->setCustomerId($CustomerIdValue);
+ $messagereports_collection->setMessageUrl(Mage::helper('core/url')->getCurrentUrl());
+ $messagereports_collection->setMessageAction($Action);
+ $messagereports_collection->setMessageWebsite($WebsiteValue);
+ $messagereports_collection->setMessageStore($StoreValue);
+ $messagereports_collection->setCreatedTime(now());
+ $messagereports_collection->save();
+ }	
+ }elseif($message->getType() == 'warning'){
+ //Warning Type
+ if(Mage::getStoreConfig('messagereports/report_settings/report_warnings')){
+ //Report Warning Messages Enabled
+ $messagereports_collection->setId();
+ $messagereports_collection->setMessageType($message->getType());
+ $messagereports_collection->setMessageContent($message->getText());
+ $messagereports_collection->setCustomerId($CustomerIdValue);
+ $messagereports_collection->setMessageUrl(Mage::helper('core/url')->getCurrentUrl());
+ $messagereports_collection->setMessageAction($Action);
+ $messagereports_collection->setMessageWebsite($WebsiteValue);
+ $messagereports_collection->setMessageStore($StoreValue);
+ $messagereports_collection->setCreatedTime(now());
+ $messagereports_collection->save();
+ }	
+ } 	
+ }
+ }  
+?>
+ 

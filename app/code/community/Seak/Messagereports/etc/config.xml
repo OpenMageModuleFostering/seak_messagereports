@@ -1,0 +1,113 @@
+<?xml version="1.0"?> 
+<!--
+
+/**
+ * Seak Ecommerce Group :: Magento Extension Development
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * @license     
+ *http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+ 
+-->
+<config>
+	<modules> 
+		<Seak_Messagereports>
+			<version>1.0.0</version>
+		</Seak_Messagereports>
+	</modules> 
+	<global>
+	    <blocks>
+            <messagereports>
+                <class>Seak_Messagereports_Block</class>
+            </messagereports>
+        </blocks>
+        <helpers>
+            <messagereports>
+                <class>Seak_Messagereports_Helper</class>
+            </messagereports>
+        </helpers>
+        <models>
+            <messagereports>
+                <class>Seak_Messagereports_Model</class>
+                <resourceModel>messagereports_mysql4</resourceModel>
+            </messagereports>
+            <messagereports_mysql4>
+                <class>Seak_Messagereports_Model_Mysql4</class>
+                <entities>
+                    <messagereports>
+                        <table>messagereports</table>
+                    </messagereports>
+                    <messagereports_store>
+                        <table>messagereports_store</table>
+                    </messagereports_store>
+                </entities>
+            </messagereports_mysql4>
+        </models>
+        <resources>
+            <messagereports_setup>
+                <setup>
+                    <module>Seak_Messagereports</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </messagereports_setup>
+            <messagereports_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </messagereports_write>
+            <messagereports_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </messagereports_read>
+        </resources>
+    </global>
+    <admin>
+        <routers>
+            <messagereports>
+                <use>admin</use>
+                <args>
+                    <module>Seak_Messagereports</module>
+                    <frontName>messagereports</frontName>
+                </args>
+            </messagereports>
+        </routers>
+    </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <messagereports>
+                    <file>seak/extensions/messagereports/messagereports.xml</file>
+                </messagereports>
+            </updates>
+        </layout>
+    </adminhtml>
+    <frontend>
+    <layout>
+    <updates>
+        <messagereports>
+            <file>seak/extensions/messagereports/messagereports.xml</file>
+        </messagereports>
+    </updates>
+    </layout>
+    </frontend>
+    <default>
+    <messagereports>
+    	<general>
+    	<enabled>1</enabled>
+    	<allow_update_check>1</allow_update_check>
+    	<allow_update_url>http://seakecommerce.com/updater/updater.php?update=messagereports.json</allow_update_url>
+    	</general>
+    	<report_settings>
+        <report_success>1</report_success>
+		<report_errors>1</report_errors>
+        <report_notices>1</report_notices>
+        <report_warnings>1</report_warnings>
+        </report_settings>
+    </messagereports>
+    </default>
+</config> 

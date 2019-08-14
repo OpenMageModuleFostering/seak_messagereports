@@ -1,0 +1,70 @@
+<?php 
+
+/**
+ * Seak Ecommerce Group :: Magento Extension Development
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+ 
+ ?>
+<?php 
+$baseurl = $this->getBaseUrl() ;
+$skinurl = $this->getSkinUrl() ;
+$url = ''.str_replace('index.php/', '',$baseurl).'';
+$IsUpdateCheckEnabled =  Mage::getStoreConfig('messagereports/general/allow_update_check');
+$version = Mage::getConfig()->getModuleConfig("Seak_Messagereports")->version;
+?>
+<div class="messagereports-seak-tab-message">
+<h4>Global Message Reports // Magento Extension // Version <?php echo $version ; ?></h4>
+<br />
+<p>Easily record global message reports and easily manage in the admin panel of your Magento Platform.</p>
+<br />
+<p>— Current Stability: Stable</p>
+<p>— Relesed Date: September 2015</p>
+<p>— Latest Update: September 2015</p>
+<p>— Web: <a href="http://seakecommerce.com/our-products/extensions/messagereports-extension/" target="_blank">Visit the Extension Page</a></p>
+<p>— Docs: <a href="<?php echo $url ?>media/seak/extensions/docs/messagereports/index.html" target="_blank">Open Documentation</a></p>
+<p>— Support: <a href="http://seakecommerce.com/support">Support Form</a></p>
+<p>— Suggest: <a href="http://www.seakecommerce.com/suggestions" target="_blank">Complete our form and submit</a></p>
+<?php if($IsUpdateCheckEnabled) { ?>
+<?php 
+$IsUpdateCheckUrl =  Mage::getStoreConfig('messagereports/general/allow_update_url');
+
+?>
+
+<script type="text/javascript">
+
+    var json_url = '<?php echo $IsUpdateCheckUrl; ?>',
+    div = document.getElementsByTagName('div')[0];
+    var vString = "";
+    request = new XMLHttpRequest();
+    request.open('GET', json_url, true);
+    var version = '<?php echo $version;?>';
+    request.onload = setTimeout(function() {
+    data = JSON.parse(request.responseText);
+	var newVersion = data.items[0].version;
+    var updateUrl = data.items[0].url;
+	
+	 if (parseFloat(newVersion) > parseFloat(version)){
+      vString += "<img src='<?php echo $url; ?>media/seak/images/error.png' /> <a style='margin:0px 0px 10px 0px;' target='_blank' href='" + updateUrl + "'' ";
+ 	  vString += "title='New Version Avaliable - " + newVersion + "'> New Update Avaliable</a>"; 
+	  updatebutton.innerHTML = vString;
+	 }
+	 else{
+      updatebutton.innerHTML = "<img src='<?php echo $url; ?>media/seak/images/ok.png' /> <a style='margin:0px 0px 10px 0px;' title='Extension is Up To Date'> Extension is Up to Date</a>";
+	 }
+    }, 3000);
+    request.send();
+	function hideIt() {
+    document.getElementById("update-loader-img").style.visibility = "hidden";
+    }
+    setTimeout("hideIt()", 6000); // after 6 sec
+
+</script>
+<p><a id="updatebutton"><img id="update-loader-img" style="visibility:visible;" src="<?php echo $url; ?>media/seak/images/loader.gif" /></a></p>
+<?php } ?>
+</div>
+
+

@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * Seak Ecommerce Group :: Magento Extension Development
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+ 
+$baseurl = Mage::getBaseUrl();
+$url = ''.str_replace('index.php/', '',$baseurl).'';
+$IsEnabled =  Mage::getStoreConfig('messagereports/general/enabled');
+
+$version = Mage::getConfig()->getModuleConfig("Seak_Messagereports")->version;
+?>
+
+<div class="notification-global" style="background:#fff9e9;background-image:none;">
+
+
+<strong class="label">Message:</strong> You have <strong><?php echo Mage::helper('messagereports')->getCount();?> </strong> report item(s). <a target="_blank" href="<?php echo $url ?>media/seak/extensions/docs/messagereports/index.html" >Read the Documentation</a><br />
+<?php if($IsEnabled) { ?>	
+<strong class="label">
+Message:</strong> Message Reporting is Enabled, you can disable this if you wish to stop Message Reporting functionality.<br/>
+<?php }else{ ?>
+<strong class="label">
+Message:</strong> Message Reporting is Disabled.<br/>
+<?php } ?>
+
+
+</div>
+
