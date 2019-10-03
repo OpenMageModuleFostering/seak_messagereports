@@ -1,16 +1,19 @@
 {
-    "name": "OpenMageModuleFostering/Seak_Messagereports",
+    "name": "OpenMageModuleFostering\/Seak_Messagereports",
     "type": "magento-module",
     "license": "Open-Software-License-(OSL)",
     "homepage": "",
     "description": "Easily record global message reports and easily manage in the admin panel of your Magento Platform.",
     "authors": [
-    {
-        "name": "Seak Ecommerce",
-        "email": "seakecommerce@gmail.com"
-    }
-],
+        {
+            "name": "Seak Ecommerce",
+            "email": "seakecommerce@gmail.com"
+        }
+    ],
     "suggest": {
-        "magento-hackathon/magento-composer-installer": "*"
-    }
+        "magento-hackathon\/magento-composer-installer": "*"
+    },
+    "keywords": [
+        "openmage-module"
+    ]
 }
