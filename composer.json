@@ -1,7 +1,7 @@
 {
-    "name": "OpenMageModuleFostering\/Seak_Messagereports",
+    "name": "openmage-module-fostering\/seak_messagereports",
     "type": "magento-module",
-    "license": "Open-Software-License-(OSL)",
+    "license": "OSL-3.0",
     "homepage": "",
     "description": "Easily record global message reports and easily manage in the admin panel of your Magento Platform.",
     "authors": [
